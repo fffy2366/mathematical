@@ -1,18 +1,13 @@
 //
-//  main.c
+//  quicksort.c
 //  mathematical
 //
 //  Created by Frank on 15/10/8.
 //  Copyright (c) 2015年 Frank. All rights reserved.
 //
 
-#include <stdio.h>
 #include "quicksort.h"
-#define SIZE 8
-/**
- *快速排序
- */
-void sort(int *a, int left, int right)
+void sort2(int *a, int left, int right)
 {
     if(left >= right)/*如果左边索引大于或者等于右边的索引就代表已经整理完成一个组了*/
     {
@@ -46,57 +41,7 @@ void sort(int *a, int left, int right)
     }
     
     a[i] = key;/*当在当组内找完一遍以后就把中间数key回归*/
-    sort(a, left, i - 1);/*最后用同样的方式对分出来的左边的小组进行同上的做法*/
-    sort(a, i + 1, right);/*用同样的方式对分出来的右边的小组进行同上的做法*/
+    sort2(a, left, i - 1);/*最后用同样的方式对分出来的左边的小组进行同上的做法*/
+    sort2(a, i + 1, right);/*用同样的方式对分出来的右边的小组进行同上的做法*/
     /*当然最后可能会出现很多分左右，直到每一组的i = j 为止*/
 }
-
-/**
- * 冒泡排序
- */
-//void bubble_sort(int a[], int n);
-
-void bubble_sort(int a[], int n)
-{
-    int i, j, temp;
-    for (j = 0; j < n - 1; j++)
-        for (i = 0; i < n - 1 - j; i++)
-        {
-            if(a[i] > a[i + 1])
-            {
-                temp = a[i];
-                a[i] = a[i + 1];
-                a[i + 1] = temp;
-            }
-        }
-}
-int main(int argc, const char * argv[]) {
-    //快速
-    printf("Hello, World!!\n");
-    //int a[6] = {3,1,2,5,6,4} ;
-    int a[SIZE] = {95, 45, 15, 78, 84, 51, 24, 12};
-    //sort2(a, 0, 5) ;
-    sort2(a, 0, 7) ;
-    
-    int len = sizeof(a)/sizeof(int);
-    printf("%2d\n",len) ;
-    for(int i=0;i<len;i++)
-        
-    {
-        printf("a[%d]=%d\n",i,a[i]);
-    }
-
-    //冒泡
-//    int number[SIZE] = {95, 45, 15, 78, 84, 51, 24, 12};
-//    int i;
-//    bubble_sort(number, SIZE);
-//    for (i = 0; i < SIZE; i++)
-//    {
-//        printf("%d\n", number[i]);
-//    }
-//    printf("\n");
-    
-    
-    return 0;
-}
-
